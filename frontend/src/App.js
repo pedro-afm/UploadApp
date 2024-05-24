@@ -24,7 +24,7 @@ function App() {
 
     try {
       const fetching = await axios.post(
-        "http://localhost:8000/upload",
+        "http://127.0.0.1:8000/upload",
         formData
       );
       setStatus(fetching.data);
