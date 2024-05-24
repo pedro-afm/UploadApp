@@ -23,11 +23,12 @@ function App() {
     formData.append("file", file);
 
     try {
-      const fetching = await axios.post(
+      const response = await axios.post(
         "http://127.0.0.1:8000/upload",
         formData
       );
-      setStatus(fetching.data);
+      console.log(response.data);
+      setStatus("File uploaded successfully");
     } catch (e) {
       setStatus("Error uploading");
       throw new Error(
@@ -38,7 +39,7 @@ function App() {
   };
   return (
     <div className="App">
-      <h1>Upload de Arquivo Excel</h1>
+      <h1>Upload of Excel Files</h1>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>
       <p>{status}</p>
