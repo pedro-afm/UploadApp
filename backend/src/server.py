@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # The folder to save items uploaded
-UPLOADED_FOLDER = 'uploads'
+UPLOADED_FOLDER = 'backend/src/uploads'
 os.makedirs(UPLOADED_FOLDER, exist_ok=True)
    
 # Endpoint to threat the Excel spreadsheet

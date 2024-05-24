@@ -4,11 +4,15 @@ import axios from "axios";
 
 function App() {
   const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Nothing uploaded");
 
   // Function to handle the file after it is uploaded
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
+      setStatus(e.target.files[0].name);
+    }
+    return;
   };
 
   // Function to show a message if there is not a file uploaded
@@ -22,6 +26,7 @@ function App() {
     const formData = new FormData();
     formData.append("file", file);
 
+    // Calling the endpoint to make the transformation
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/upload",
@@ -38,11 +43,28 @@ function App() {
     }
   };
   return (
-    <div className="App">
-      <h1>Upload of Excel Files</h1>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      <p>{status}</p>
+    <div className="container d-flex justify-content-center mt-100">
+      <div>
+        <div>
+          <div className="file-drop-area file-drop-area-hover">
+            <h1 style={{ marginRight: "20px" }}>Upload of Excel Files</h1>
+            <span className="choose-file-button">Choose files</span>
+            <span className="file-message">or drag and drop files here</span>
+            <input
+              className="file-input"
+              type="file"
+              onChange={handleFileChange}
+            />
+          </div>
+        </div>
+        <span></span>
+        <div style={{ textAlign: "center" }}>
+          <button className="file-button" onClick={handleUpload}>
+            Upload
+          </button>
+          <p>{status}</p>
+        </div>
+      </div>
     </div>
   );
 }

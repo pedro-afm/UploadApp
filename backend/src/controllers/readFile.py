@@ -12,7 +12,7 @@ def read_File(file_path):
         combined_df = pd.concat([df1, df2])
 
         # Removing lines where stock and quantity are 0
-        combined_df = combined_df[(combined_df['Stock'] != 0) & (combined_df['QTD'] != 0)]
+        combined_df = combined_df[(combined_df['Stock'] > 0) & (combined_df['QTD'] > 0)]
 
         # Modifying the 'Descricao' column to contain only the last word of the string
         combined_df['Descricao'] = combined_df['Descricao'].apply(lambda x: x.split()[-1])
