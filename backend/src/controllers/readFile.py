@@ -8,7 +8,7 @@ def read_File(file_path):
         df2 = pd.read_excel(xls, sheet_name=xls.sheet_names[1])
 
         # Renaming the column of the second sheet
-        df2 = df2.rename(columns={'T.QTD': 'QTD'}, inplace=True)
+        df2 = df2.rename(columns={'T.QTD': 'QTD'})
         combined_df = pd.concat([df1, df2])
 
         # Removing lines where stock and quantity are 0
